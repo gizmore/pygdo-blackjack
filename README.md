@@ -1,2 +1,7 @@
 # pygdo-blackjack
-A blackjack chatgame for pygdo.
+A blackjack chat-game for [pygdo](https://github.com/gizmore/pygdo).
+This works currently in text based connectors. So all but not HTTP.
+
+## Installation
+
+``````
