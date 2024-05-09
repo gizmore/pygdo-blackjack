@@ -12,7 +12,7 @@ class hold(Method):
         game = Game.instance(user)
 
         if not game.running():
-            return self.reply('err_bj_not_running')
+            return self.err('err_bj_not_running')
 
         min_ = game.hand_value(game._hand)
         cards = [game.draw_card(), game.draw_card()]
@@ -21,7 +21,7 @@ class hold(Method):
 
         if game.hand_value(cards) > 21:
             win = game.won(False)
-            return self.reply('msg_bj_won', [game.render_cards(cards), win, game.get_credits()])
+            return self.msg('msg_bj_won', [game.render_cards(cards), win, game.get_credits()])
 
         loss = game.lost()
-        return self.reply('msg_bj_lost', [game.render_cards(cards), loss, game.get_credits()])
+        return self.err('msg_bj_lost', [game.render_cards(cards), loss, game.get_credits()])

@@ -26,11 +26,11 @@ class draw(Method):
             bj = game.has_blackjack()
             win = game.won(bj)
             if bj:
-                return self.reply('msg_bj_draw_bj', [amt, game.render_hand(cards), win, game.get_credits()])
+                return self.msg('msg_bj_draw_bj', [amt, game.render_hand(cards), win, game.get_credits()])
             else:
-                return self.reply('msg_bj_draw_won', [amt, game.render_hand(cards), win, game.get_credits()])
+                return self.msg('msg_bj_draw_won', [amt, game.render_hand(cards), win, game.get_credits()])
         elif value > 21:
             win = game.lost()
-            return self.reply('msg_bj_busted', [amt, game.render_cards(cards), win, game.get_credits()])
+            return self.err('msg_bj_busted', [amt, game.render_cards(cards), win, game.get_credits()])
 
         return self.reply('msg_bj_drawn', [amt, game.render_hand(cards)])

@@ -20,17 +20,17 @@ class bet(Method):
         has = mod.get_credits(user)
         game = Game.instance(user)
         if game.has_bet():
-            return self.reply('err_bj_running')
+            return self.err('err_bj_running')
         min_bet = mod.cfg_min_bet()
         if amt < min_bet:
-            return self.reply('err_bj_min_bet', [min_bet])
+            return self.err('err_bj_min_bet', [min_bet])
         if has < amt:
-            return self.reply('err_bj_credits', [has])
+            return self.err('err_bj_credits', [has])
 
         cards = game.bet(amt)
 
         if game.has_blackjack():
             win = game.won(True)
-            return self.reply('msg_bj_started_bj', [amt, game.render_cards(cards), win, game.get_credits()])
+            return self.msg('msg_bj_started_bj', [amt, game.render_cards(cards), win, game.get_credits()])
 
         return self.reply('msg_bj_started', [amt, game.get_credits(), game.render_hand(cards)])
