@@ -16,6 +16,9 @@ class site(MethodForm):
     def gdo_trigger(self) -> str:
         return ''
 
+    def gdo_user_type(self) -> str | None:
+        return 'guest,member'
+
     def gdo_create_form(self, form: GDT_Form) -> None:
         mod = module_blackjack.instance()
         user = self._env_user
