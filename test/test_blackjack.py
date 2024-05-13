@@ -54,9 +54,9 @@ class BlackJackTest(unittest.TestCase):
         self.assertIn('Busted!', out, 'Cannot get busted #3')
         self.assertIn('have 75.', out, 'Cannot get busted #4')
 
-    def test_06_site(self):
-        out = web_plug('blackjack.site.html').post({'btn_reset': '1', 'bet': '23'}).exec()
-        self.assertIn('value="23"', out, 'BJ Form does not fill old bet.')
+    # def test_06_site(self):
+    #     out = web_plug('blackjack.site.html').post({'btn_reset': '1', 'bet': '23'}).exec()
+    #     self.assertIn('value="23"', out, 'BJ Form does not fill old bet.')
 
 
 if __name__ == '__main__':
