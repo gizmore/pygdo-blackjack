@@ -1,7 +1,7 @@
 from random import shuffle
 
 from gdo.base.Trans import t
-from gdo.base.Util import Permutations
+from gdo.base.Util import Permutations, msg
 from gdo.blackjack.module_blackjack import module_blackjack
 from gdo.core.GDO_User import GDO_User
 
@@ -34,7 +34,8 @@ class Game:
         self.shuffle()
 
     def shuffle(self) -> None:
-        self._user.send("msg_bj_shuffle")
+        msg('msg_bj_shuffle')
+        # self._user.send("msg_bj_shuffle")
         cards = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A']
         self._cards = cards * 8
         shuffle(self._cards)
