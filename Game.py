@@ -131,7 +131,7 @@ class Game:
         return t('bj_no_cards')
 
     def render_cards(self, cards: list[str]) -> str:
-        return ', '.join(cards) + f" ({self.hand_value(cards)})"
+        return ', '.join(cards) + f" ({self.hand_value(cards)} {t('bj_points')})"
 
     def get_bet(self) -> int:
         return self._bet
