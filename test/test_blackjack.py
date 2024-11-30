@@ -60,13 +60,13 @@ class BlackJackTest(unittest.TestCase):
         self.assertIn('have 75.', out, 'Cannot get busted #4')
 
     def test_06_rate_limit(self):
-        cli_plug(None, '$bj.reset')
-        cli_plug(None, '$bj.reset')
-        cli_plug(None, '$bj.reset')
-        cli_plug(None, '$bj.reset')
-        cli_plug(None, '$bj.reset')
-        cli_plug(None, '$bj.reset')
         with self.assertRaises(GDOError):
+            cli_plug(None, '$bj.reset')
+            cli_plug(None, '$bj.reset')
+            cli_plug(None, '$bj.reset')
+            cli_plug(None, '$bj.reset')
+            cli_plug(None, '$bj.reset')
+            cli_plug(None, '$bj.reset')
             cli_plug(None, '$bj.reset')
         self.assertIn(cli_top(), 'max of 6 per 1m.', 'WithRateLimit does not work.')
 
