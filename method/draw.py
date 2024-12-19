@@ -9,12 +9,12 @@ class draw(Method):
     def gdo_trigger(self) -> str:
         return 'bj.draw'
 
-    def gdo_parameters(self) -> [GDT]:
+    def gdo_parameters(self) -> list[GDT]:
         return [
             GDT_UInt('amt').min(1).max(3).initial('1'),
         ]
 
-    def gdo_execute(self):
+    def gdo_execute(self) -> GDT:
         user = self._env_user
         game = Game.instance(user)
         amt = self.param_value('amt')

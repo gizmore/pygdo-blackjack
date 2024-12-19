@@ -1,3 +1,4 @@
+from gdo.base.GDT import GDT
 from gdo.base.Method import Method
 from gdo.blackjack.Game import Game
 
@@ -7,7 +8,7 @@ class hold(Method):
     def gdo_trigger(self) -> str:
         return "bj.hold"
 
-    def gdo_execute(self):
+    def gdo_execute(self) -> GDT:
         user = self._env_user
         game = Game.instance(user)
 

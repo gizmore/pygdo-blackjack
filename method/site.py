@@ -12,6 +12,9 @@ from gdo.ui.GDT_Bar import GDT_Bar
 
 
 class site(MethodForm):
+    """
+    Turn blackjack commands into a poorly usable website.
+    """
 
     def gdo_trigger(self) -> str:
         return ''

@@ -1,3 +1,4 @@
+from gdo.base.GDT import GDT
 from gdo.base.Method import Method
 from gdo.blackjack.module_blackjack import module_blackjack
 from gdo.blackjack.Game import Game
@@ -13,7 +14,7 @@ class bet(Method):
             GDT_UInt('bet').not_null(),
         ]
 
-    def gdo_execute(self):
+    def gdo_execute(self) -> GDT:
         user = self._env_user
         mod = module_blackjack.instance()
         amt = self.param_value('bet')

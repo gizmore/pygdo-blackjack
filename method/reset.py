@@ -1,3 +1,4 @@
+from gdo.base.GDT import GDT
 from gdo.base.Method import Method
 from gdo.base.WithRateLimit import WithRateLimit
 from gdo.blackjack.module_blackjack import module_blackjack
@@ -10,7 +11,7 @@ class reset(Method):
         return 'bj.reset'
 
     @WithRateLimit
-    def gdo_execute(self):
+    def gdo_execute(self) -> GDT:
         user = self._env_user
         mod = module_blackjack.instance()
         mod.reset(user)
