@@ -21,10 +21,10 @@ class module_blackjack(GDO_Module):
             GDT_UInt('bj_money_lost').initial('0').writable(False),
         ]
 
-    def cfg_min_bet(self) -> int:
-        return self.get_config_value('bj_min_bet')
+    async def cfg_min_bet(self) -> int:
+        return await self.get_config_value('bj_min_bet')
 
-    def gdo_init_sidebar(self, page):
+    async def gdo_init_sidebar(self, page):
         page._left_bar.add_field(GDT_Link().href(self.href('site')).text('module_blackjack'))
 
     ###############

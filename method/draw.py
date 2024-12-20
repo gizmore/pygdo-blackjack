@@ -14,7 +14,7 @@ class draw(Method):
             GDT_UInt('amt').min(1).max(3).initial('1'),
         ]
 
-    def gdo_execute(self) -> GDT:
+    async def gdo_execute(self) -> GDT:
         user = self._env_user
         game = Game.instance(user)
         amt = self.param_value('amt')

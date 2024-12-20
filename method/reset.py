@@ -11,7 +11,7 @@ class reset(Method):
         return 'bj.reset'
 
     @WithRateLimit
-    def gdo_execute(self) -> GDT:
+    async def gdo_execute(self) -> GDT:
         user = self._env_user
         mod = module_blackjack.instance()
         mod.reset(user)
