@@ -13,7 +13,7 @@ class stats(Method):
             GDT_User('user'),
         ]
 
-    async def gdo_execute(self) -> GDT:
+    def gdo_execute(self) -> GDT:
         user = self.param_value('user')
         if not user:
             return self.show_global_stats()

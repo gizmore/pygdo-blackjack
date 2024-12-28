@@ -14,7 +14,7 @@ class bet(Method):
             GDT_UInt('bet').not_null(),
         ]
 
-    async def gdo_execute(self) -> GDT:
+    def gdo_execute(self) -> GDT:
         user = self._env_user
         mod = module_blackjack.instance()
         amt = self.param_value('bet')

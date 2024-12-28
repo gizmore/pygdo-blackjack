@@ -8,7 +8,7 @@ class hold(Method):
     def gdo_trigger(self) -> str:
         return "bj.hold"
 
-    async def gdo_execute(self) -> GDT:
+    def gdo_execute(self) -> GDT:
         user = self._env_user
         game = Game.instance(user)
 
