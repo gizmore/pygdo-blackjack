@@ -34,4 +34,5 @@ class bet(Method):
             win = game.won(True)
             return self.msg('msg_bj_started_bj', [amt, game.render_cards(cards), win, game.get_credits()])
 
-        return self.reply('msg_bj_started', [amt, game.get_credits(), game.render_hand(cards)])
+        self.msg('msg_bj_started', [amt, game.get_credits(), game.render_hand(cards)])
+        return self.empty()

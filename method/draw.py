@@ -19,7 +19,7 @@ class draw(Method):
         game = Game.instance(user)
         amt = self.param_value('amt')
         if not game.running():
-            return self.reply('err_bj_not_running')
+            return self.err('err_bj_not_running')
         cards = game.draw(amt)
         value = game.hand_value(game._hand)
         if value == 21:
@@ -33,4 +33,4 @@ class draw(Method):
             win = game.lost()
             return self.err('msg_bj_busted', [amt, game.render_cards(cards), win, game.get_credits()])
 
-        return self.reply('msg_bj_drawn', [amt, game.render_hand(cards)])
+        return self.msg('msg_bj_drawn', [amt, game.render_hand(cards)])

@@ -1,3 +1,5 @@
+import asyncio
+
 from gdo.blackjack.Game import Game
 from gdo.blackjack.method.draw import draw
 from gdo.blackjack.method.hold import hold
@@ -55,4 +57,6 @@ class site(MethodForm):
     def bj_method(self, method_class):
         method = method_class()
         gdt = method.env_copy(self).args_copy(self).execute()
+        while asyncio.iscoroutine(gdt):
+            gdt = asyncio.run(gdt)
         return GDT_Bar().vertical().add_field(gdt, self.get_form(True))
