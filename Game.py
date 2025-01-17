@@ -27,11 +27,16 @@ class Game(WithSerialization):
         Cache.remove('bj', user.get_id())
 
     def __init__(self, user: 'GDO_User'):
-        self._bet = 0
+        self.gdo_wake_up()
         self._user = user
+        self.shuffle()
+
+    def gdo_wake_up(self):
+        self._bet = 0
+        self._user = None
         self._cards = []
         self._hand = []
-        self.shuffle()
+
 
     def shuffle(self) -> None:
         msg('msg_bj_shuffle')
