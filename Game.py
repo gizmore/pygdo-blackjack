@@ -3,11 +3,12 @@ from random import shuffle
 from gdo.base.Cache import Cache
 from gdo.base.Trans import t
 from gdo.base.Util import Permutations, msg
+from gdo.base.WithSerialization import WithSerialization
 from gdo.blackjack.module_blackjack import module_blackjack
 from gdo.core.GDO_User import GDO_User
 
 
-class Game():
+class Game(WithSerialization):
     _user: GDO_User
     _bet: int
     _cards: []
