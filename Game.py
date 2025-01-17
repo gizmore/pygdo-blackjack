@@ -1,32 +1,30 @@
 from random import shuffle
 
+from gdo.base.Cache import Cache
 from gdo.base.Trans import t
 from gdo.base.Util import Permutations, msg
 from gdo.blackjack.module_blackjack import module_blackjack
 from gdo.core.GDO_User import GDO_User
 
 
-class Game:
-    GAMES = {}
-
-    _bet: int
+class Game():
     _user: GDO_User
+    _bet: int
     _cards: []
     _hand: []
 
     @classmethod
-    def instance(cls, user: object) -> 'Game':
-        uid = user.get_id()
-        if uid not in cls.GAMES:
-            cls.GAMES[uid] = cls(user)
-        return cls.GAMES[uid]
+    def instance(cls, user: 'GDO_User') -> 'Game':
+        if not (game := user._session.get('bj_game')):
+            game = Game(user)
+            user._session.set('bj_game', game)
+        return game
 
     @classmethod
-    def reset(cls, user: object):
-        if user.get_id() in cls.GAMES:
-            del cls.GAMES[user.get_id()]
+    def reset(cls, user: 'GDO_User'):
+        Cache.remove('bj', user.get_id())
 
-    def __init__(self, user: object):
+    def __init__(self, user: 'GDO_User'):
         self._bet = 0
         self._user = user
         self._cards = []
@@ -35,7 +33,6 @@ class Game:
 
     def shuffle(self) -> None:
         msg('msg_bj_shuffle')
-        # self._user.send("msg_bj_shuffle")
         cards = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A']
         self._cards = cards * 8
         shuffle(self._cards)
@@ -78,7 +75,7 @@ class Game:
         perms = []
         for card in cards:
             perms.append(self.card_values(card))
-        min_val = 137
+        min_val = 1337
         max_val = 0
         perms = Permutations(perms)
         for p in perms.generate():

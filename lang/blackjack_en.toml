@@ -40,6 +40,7 @@ mt_blackjack_hold = "Hold"
 md_blackjack_hold = "Stop drawing cards and let the dealer play blackjack."
 msg_bj_won = "The dealer draws %s. You win %s and now have %s."
 msg_bj_lost = "The dealer draws %s. You lost your %s and now have %s."
+msg_bj_lost_draw = "The dealer draws %s. Draw! You lost your %s and now have %s."
 
 ########
 # Site #

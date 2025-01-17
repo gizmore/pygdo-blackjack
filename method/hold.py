@@ -17,7 +17,7 @@ class hold(Method):
 
         min_ = game.hand_value(game._hand)
         cards = [game.draw_card(), game.draw_card()]
-        while game.hand_value(cards) <= min_:
+        while game.hand_value(cards) < min_:
             cards.append(game.draw_card())
 
         if game.hand_value(cards) > 21:
@@ -25,4 +25,7 @@ class hold(Method):
             return self.msg('msg_bj_won', [game.render_cards(cards), win, game.get_credits()])
 
         loss = game.lost()
+
+        if game.hand_value(cards) == min_:
+            return self.err('msg_bj_lost_draw', [game.render_cards(cards), loss, game.get_credits()])
         return self.err('msg_bj_lost', [game.render_cards(cards), loss, game.get_credits()])
