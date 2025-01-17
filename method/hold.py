@@ -5,6 +5,8 @@ from gdo.blackjack.Game import Game
 
 class hold(Method):
 
+    _game: Game
+
     def gdo_trigger(self) -> str:
         return "bj.hold"
 
@@ -29,3 +31,6 @@ class hold(Method):
         if game.hand_value(cards) == min_:
             return self.err('msg_bj_lost_draw', [game.render_cards(cards), loss, game.get_credits()])
         return self.err('msg_bj_lost', [game.render_cards(cards), loss, game.get_credits()])
+
+    def gdo_after_execute(self):
+        self._game.save()

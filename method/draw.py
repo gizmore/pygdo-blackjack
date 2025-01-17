@@ -6,6 +6,8 @@ from gdo.core.GDT_UInt import GDT_UInt
 
 class draw(Method):
 
+    _game: Game
+
     def gdo_trigger(self) -> str:
         return 'bj.draw'
 
@@ -16,7 +18,7 @@ class draw(Method):
 
     def gdo_execute(self) -> GDT:
         user = self._env_user
-        game = Game.instance(user)
+        self._game = game = Game.instance(user)
         amt = self.param_value('amt')
         if not game.running():
             return self.err('err_bj_not_running')
@@ -34,3 +36,6 @@ class draw(Method):
             return self.err('msg_bj_busted', [amt, game.render_cards(cards), win, game.get_credits()])
 
         return self.msg('msg_bj_drawn', [amt, game.render_hand(cards)])
+
+    def gdo_after_execute(self):
+        self._game.save()

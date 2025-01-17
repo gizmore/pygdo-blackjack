@@ -37,6 +37,8 @@ class Game(WithSerialization):
         self._cards = []
         self._hand = []
 
+    def save(self):
+        Cache.set('bj_game', self._user.get_id(), self)
 
     def shuffle(self) -> None:
         msg('msg_bj_shuffle')

@@ -6,6 +6,9 @@ from gdo.core.GDT_UInt import GDT_UInt
 
 
 class bet(Method):
+
+    _game: Game
+
     def gdo_trigger(self):
         return 'bj.bet'
 
@@ -19,7 +22,7 @@ class bet(Method):
         mod = module_blackjack.instance()
         amt = self.param_value('bet')
         has = mod.get_credits(user)
-        game = Game.instance(user)
+        self._game = game = Game.instance(user)
         if game.has_bet():
             return self.err('err_bj_running')
         min_bet = mod.cfg_min_bet()
@@ -36,3 +39,6 @@ class bet(Method):
 
         self.msg('msg_bj_started', [amt, game.get_credits(), game.render_hand(cards)])
         return self.empty()
+
+    def gdo_after_execute(self):
+        self._game.save()
