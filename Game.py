@@ -15,9 +15,10 @@ class Game():
 
     @classmethod
     def instance(cls, user: 'GDO_User') -> 'Game':
-        if not (game := user._session.get('bj_game')):
-            game = Game(user)
-            user._session.set('bj_game', game)
+        if game := Cache.get('bj_game', user.get_id()):
+            return game
+        game = Game(user)
+        Cache.set('bj_game', user.get_id(), game)
         return game
 
     @classmethod
