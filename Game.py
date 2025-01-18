@@ -14,6 +14,13 @@ class Game(WithSerialization):
     _cards: []
     _hand: []
 
+    __slots__ = (
+        '_user',
+        '_bet',
+        '_cards',
+        '_hand',
+    )
+
     @classmethod
     def instance(cls, user: 'GDO_User') -> 'Game':
         if game := Cache.get('bj_game', user.get_id()):
@@ -27,15 +34,19 @@ class Game(WithSerialization):
         Cache.remove('bj', user.get_id())
 
     def __init__(self, user: 'GDO_User'):
-        self.gdo_wake_up()
         self._user = user
-        self.shuffle()
-
-    def gdo_wake_up(self):
         self._bet = 0
-        self._user = None
         self._cards = []
         self._hand = []
+        self.shuffle()
+
+    def gdo_redis_fields(self) -> list[str]:
+        return [
+            '_user',
+            '_bet',
+            '_cards',
+            '_hand',
+        ]
 
     def save(self):
         Cache.set('bj_game', self._user.get_id(), self)
