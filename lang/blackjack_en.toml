@@ -3,6 +3,7 @@ msg_bj_shuffle = "The dealer is shuffling the cards."
 bj_hand = '%s cards: %s'
 bj_no_cards = 'no cards.'
 bj_points = 'points'
+bj_credits = "Credits"
 
 #########
 # Reset #

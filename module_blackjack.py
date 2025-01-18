@@ -2,6 +2,7 @@ from gdo.base.GDO_Module import GDO_Module
 from gdo.base.GDT import GDT
 from gdo.core.GDO_User import GDO_User
 from gdo.core.GDT_UInt import GDT_UInt
+from gdo.payment_credits.GDT_Credits import GDT_Credits
 from gdo.ui.GDT_Link import GDT_Link
 
 
@@ -13,12 +14,12 @@ class module_blackjack(GDO_Module):
 
     def gdo_module_config(self) -> list[GDT]:
         return [
-            GDT_UInt('bj_min_bet').initial('10').min(1).max(1000000),
+            GDT_Credits('bj_min_bet').initial('10').min(1).max(1000000),
             GDT_UInt('bj_games').initial('0').writable(False),
             GDT_UInt('bj_games_won').initial('0').writable(False),
             GDT_UInt('bj_games_lost').initial('0').writable(False),
-            GDT_UInt('bj_money_won').initial('0').writable(False),
-            GDT_UInt('bj_money_lost').initial('0').writable(False),
+            GDT_Credits('bj_money_won').initial('0').writable(False),
+            GDT_Credits('bj_money_lost').initial('0').writable(False),
         ]
 
     def cfg_min_bet(self) -> int:
@@ -33,7 +34,7 @@ class module_blackjack(GDO_Module):
 
     def gdo_user_config(self) -> list[GDT]:
         return [
-            GDT_UInt('bj_credits').initial('100'),
+            GDT_Credits('bj_credits').initial('100'),
             GDT_UInt('bj_played').initial('0'),
             GDT_UInt('bj_won').initial('0'),
             GDT_UInt('bj_lost').initial('0'),

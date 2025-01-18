@@ -12,7 +12,7 @@ class hold(Method):
 
     def gdo_execute(self) -> GDT:
         user = self._env_user
-        game = Game.instance(user)
+        game = self._game = Game.instance(user)
 
         if not game.running():
             return self.err('err_bj_not_running')
