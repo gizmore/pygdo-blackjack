@@ -25,7 +25,7 @@ class site(MethodForm):
         return 'guest,member'
 
     def gdo_create_form(self, form: GDT_Form) -> None:
-        mod = module_blackjack.instance()
+        # mod = module_blackjack.instance()
         user = self._env_user
         game = Game.instance(user)
         num_played = user.get_setting_value('bj_played')
