@@ -144,7 +144,7 @@ class Game(WithSerialization):
 
     def render_hand(self, cards: list[str]) -> str:
         if len(cards):
-            return t('bj_hand', [len(cards), self.render_cards(cards)])
+            return t('bj_hand', (len(cards), self.render_cards(cards)))
         return t('bj_no_cards')
 
     def render_cards(self, cards: list[str]) -> str:
