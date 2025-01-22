@@ -3,6 +3,7 @@ from gdo.base.Method import Method
 from gdo.blackjack.module_blackjack import module_blackjack
 from gdo.blackjack.Game import Game
 from gdo.core.GDT_UInt import GDT_UInt
+from gdo.payment_credits.GDT_Credits import GDT_Credits
 
 
 class bet(Method):
@@ -14,7 +15,7 @@ class bet(Method):
 
     def gdo_parameters(self):
         return [
-            GDT_UInt('bet').not_null(),
+            GDT_Credits('bet').not_null(),
         ]
 
     def gdo_execute(self) -> GDT:
