@@ -18,10 +18,10 @@ msg_bj_reset = "Your BlackJack credits have been reset. Balance: %s."
 mt_blackjack_bet = "Bet on BlackJack"
 md_blackjack_bet = "Bet on a new BlackJack game."
 err_bj_running = "You are already playing a game."
-err_bj_min_bet = "You have to bet at least %s."
-err_bj_credits = "You do only have %s credits."
-msg_bj_started = "You bet %s and have %s left. You hold %s"
-msg_bj_started_bj = "You bet %s... and got %s, BlackJack! You win %s and now have %s."
+err_bj_min_bet = "You have to bet at least %d."
+err_bj_credits = "You do only have %d credits."
+msg_bj_started = "You bet %d and have %d left. You hold %s"
+msg_bj_started_bj = "You bet %d... and got %s, BlackJack! You win %d and now have %d."
 
 ########
 # Draw #
@@ -29,26 +29,26 @@ msg_bj_started_bj = "You bet %s... and got %s, BlackJack! You win %s and now hav
 mt_blackjack_draw = "Draw Cards"
 md_blackjack_draw = "Draw one or more cards in your current blackjack game."
 err_bj_not_running = "You have to bj.bet first."
-msg_bj_draw_bj = "You draw %s card(s) and now have %s. BlackJack! You win %s and now have %s."
-msg_bj_draw_won = "You draw %s card(s) and now have %s. You win %s and now have %s."
-msg_bj_drawn = "You draw %s card(s) and now hold %s."
-msg_bj_busted = "You draw %s card(s) and now hold %s. Busted! You lose your %s and now have %s."
+msg_bj_draw_bj = "You draw %d card(s) and now have %s. BlackJack! You win %d and now have %d."
+msg_bj_draw_won = "You draw %d card(s) and now have %s. You win %d and now have %d."
+msg_bj_drawn = "You draw %d card(s) and now hold %s."
+msg_bj_busted = "You draw %d card(s) and now hold %s. Busted! You lose your %d and now have %d."
 
 ########
 # Hold #
 ########
 mt_blackjack_hold = "Hold"
 md_blackjack_hold = "Stop drawing cards and let the dealer play blackjack."
-msg_bj_won = "The dealer draws %s. You win %s and now have %s."
-msg_bj_lost = "The dealer draws %s. You lost your %s and now have %s."
-msg_bj_lost_draw = "The dealer draws %s. Draw! You lost your %s and now have %s."
+msg_bj_won = "The dealer draws %s. You win %d and now have %d"
+msg_bj_lost = "The dealer draws %s. You lost your %d and now have %d."
+msg_bj_lost_draw = "The dealer draws %s. Draw! You lost your %d and now have %d."
 
 ########
 # Site #
 ########
 mt_blackjack_site = "BlackJack"
 md_blackjack_site = "HTTP combined view for playing BlackJack on this PyGDOv8 installation."
-info_blackjack = "You have played %s games and won %s (%.0f%%). Balance: %sc. You hold %s"
+info_blackjack = "You have played %d games and won %d (%.0f%%). Balance: %dc. You hold %s"
 btn_bet = "Bet"
 btn_draw_card = "Draw Card"
 btn_hold_cards = "Hold"

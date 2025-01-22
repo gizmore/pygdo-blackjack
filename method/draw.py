@@ -28,14 +28,14 @@ class draw(Method):
             bj = game.has_blackjack()
             win = game.won(bj)
             if bj:
-                return self.msg('msg_bj_draw_bj', [amt, game.render_hand(cards), win, game.get_credits()])
+                return self.msg('msg_bj_draw_bj', (amt, game.render_hand(cards), win, game.get_credits()))
             else:
-                return self.msg('msg_bj_draw_won', [amt, game.render_hand(cards), win, game.get_credits()])
+                return self.msg('msg_bj_draw_won', (amt, game.render_hand(cards), win, game.get_credits()))
         elif value > 21:
             win = game.lost()
-            return self.err('msg_bj_busted', [amt, game.render_cards(cards), win, game.get_credits()])
+            return self.err('msg_bj_busted', (amt, game.render_cards(cards), win, game.get_credits()))
 
-        return self.msg('msg_bj_drawn', [amt, game.render_hand(cards)])
+        return self.msg('msg_bj_drawn', (amt, game.render_hand(cards)))
 
     def gdo_after_execute(self):
         self._game.save()

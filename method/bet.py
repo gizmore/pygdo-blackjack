@@ -36,9 +36,9 @@ class bet(Method):
 
         if game.has_blackjack():
             win = game.won(True)
-            return self.msg('msg_bj_started_bj', [amt, game.render_cards(cards), win, game.get_credits()])
+            return self.msg('msg_bj_started_bj', (amt, game.render_cards(cards), win, game.get_credits()))
 
-        self.msg('msg_bj_started', [amt, game.get_credits(), game.render_hand(cards)])
+        self.msg('msg_bj_started', (amt, game.get_credits(), game.render_hand(cards)))
         return self.empty()
 
     def gdo_after_execute(self):

@@ -16,4 +16,4 @@ class reset(Method):
         mod = module_blackjack.instance()
         mod.reset(user)
         Game.reset(user)
-        return self.msg('msg_bj_reset', [mod.get_credits(user)])
+        return self.msg('msg_bj_reset', (mod.get_credits(user),))
