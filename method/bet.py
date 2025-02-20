@@ -28,9 +28,9 @@ class bet(Method):
             return self.err('err_bj_running')
         min_bet = mod.cfg_min_bet()
         if amt < min_bet:
-            return self.err('err_bj_min_bet', [(min_bet,)])
+            return self.err('err_bj_min_bet', (min_bet,))
         if has < amt:
-            return self.err('err_bj_credits', [(has,)])
+            return self.err('err_bj_credits', (has,))
 
         cards = game.bet(amt)
 
