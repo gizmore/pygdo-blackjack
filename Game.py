@@ -54,8 +54,7 @@ class Game(WithSerialization):
 
     def shuffle(self) -> None:
         msg('msg_bj_shuffle')
-        cards = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A']
-        self._cards = cards * 8
+        self._cards = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'] * 8
         shuffle(self._cards)
 
     def has_bet(self) -> bool:
