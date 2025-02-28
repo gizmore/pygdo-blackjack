@@ -28,7 +28,7 @@ class hold(Method):
 
         if game.hand_value(cards) == min_:
             bet = game.on_draw()
-            return self.err('msg_bj_lost_draw', (game.render_cards(cards), xbet, game.get_credits()))
+            return self.err('msg_bj_lost_draw', (game.render_cards(cards), bet, game.get_credits()))
 
         loss = game.lost()
         return self.err('msg_bj_lost', (game.render_cards(cards), loss, game.get_credits()))
