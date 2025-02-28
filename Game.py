@@ -145,7 +145,10 @@ class Game(WithSerialization):
     def on_draw(self):
         m = module_blackjack.instance()
         m.save_game(self._user, self._bet, False)
+        bet = self._bet
         self.over()
+        return bet
+
 
     def render_hand(self, cards: list[str]) -> str:
         if len(cards):
