@@ -26,10 +26,11 @@ class hold(Method):
             win = game.won(False)
             return self.msg('msg_bj_won', (game.render_cards(cards), win, game.get_credits()))
 
-        loss = game.lost()
-
         if game.hand_value(cards) == min_:
-            return self.err('msg_bj_lost_draw', (game.render_cards(cards), loss, game.get_credits()))
+            game.on_draw()
+            return self.err('msg_bj_lost_draw', (game.render_cards(cards), game._bet, game.get_credits()))
+
+        loss = game.lost()
         return self.err('msg_bj_lost', (game.render_cards(cards), loss, game.get_credits()))
 
     def gdo_after_execute(self):
