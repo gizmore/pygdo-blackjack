@@ -26,9 +26,10 @@ class Game(WithSerialization):
     @classmethod
     def instance(cls, user: 'GDO_User') -> 'Game':
         if game := Cache.get('bj_game', user.get_id()):
-            return game
-        game = Game(user)
-        Cache.set('bj_game', user.get_id(), game)
+            game._user = user
+        else:
+            game = Game(user)
+            Cache.set('bj_game', user.get_id(), game)
         return game
 
     @classmethod
@@ -154,7 +155,6 @@ class Game(WithSerialization):
         self.over()
         return bet
 
-
     def render_hand(self, cards: list[str]) -> str:
         if len(cards):
             return t('bj_hand', (len(cards), self.render_cards(cards)))
@@ -165,4 +165,3 @@ class Game(WithSerialization):
 
     def get_bet(self) -> int:
         return self._bet
-
