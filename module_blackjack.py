@@ -67,6 +67,3 @@ class module_blackjack(GDO_Module):
             self.increase_config_val('bj_games_won', 1)
             self.increase_config_val('bj_money_won', -amt)
             user.increase_setting('bj_lost', 1)
-
-
-

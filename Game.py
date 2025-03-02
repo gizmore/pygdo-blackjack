@@ -26,7 +26,6 @@ class Game(WithSerialization):
     @classmethod
     def instance(cls, user: 'GDO_User') -> 'Game':
         if game := Cache.get('bj_game', user.get_id()):
-            game._user = user
             return game
         game = Game(user)
         Cache.set('bj_game', user.get_id(), game)
