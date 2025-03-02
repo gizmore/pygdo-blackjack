@@ -20,7 +20,7 @@ md_blackjack_bet = "Bet on a new BlackJack game."
 err_bj_running = "You are already playing a game."
 err_bj_min_bet = "You have to bet at least %d."
 err_bj_credits = "You do only have %d credits."
-msg_bj_started = "You bet %d and have %d left. You hold %s"
+msg_bj_started = "You bet %d and have %d left. You hold %s and the dealer got %s."
 msg_bj_started_bj = "You bet %d... and got %s, BlackJack! You win %d and now have %d."
 
 ########

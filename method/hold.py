@@ -18,7 +18,7 @@ class hold(Method):
             return self.err('err_bj_not_running')
 
         min_ = game.hand_value(game._hand)
-        cards = [game.draw_card(), game.draw_card()]
+        cards = game._dealer
         while game.hand_value(cards) < min_:
             cards.append(game.draw_card())
 

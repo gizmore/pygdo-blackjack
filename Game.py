@@ -11,14 +11,16 @@ from gdo.core.GDO_User import GDO_User
 class Game(WithSerialization):
     _user: GDO_User
     _bet: int
-    _cards: []
-    _hand: []
+    _cards: list[str]
+    _hand: list[str]
+    _dealer: list[str]
 
     __slots__ = (
         '_user',
         '_bet',
         '_cards',
         '_hand',
+        '_dealer',
     )
 
     @classmethod
@@ -32,13 +34,14 @@ class Game(WithSerialization):
 
     @classmethod
     def reset(cls, user: 'GDO_User'):
-        Cache.remove('bj', user.get_id())
+        Cache.remove('bj_game', user.get_id())
 
     def __init__(self, user: 'GDO_User'):
         self._user = user
         self._bet = 0
         self._cards = []
         self._hand = []
+        self._dealer = []
         self.shuffle()
 
     def gdo_redis_fields(self) -> list[str]:
@@ -47,6 +50,7 @@ class Game(WithSerialization):
             '_bet',
             '_cards',
             '_hand',
+            '_dealer',
         ]
 
     def save(self):
@@ -64,6 +68,7 @@ class Game(WithSerialization):
         m = module_blackjack.instance()
         m.bet(self._user, bet)
         self._bet = bet
+        self._dealer.append(self.draw_card())
         return self.draw(2)
 
     def draw(self, amt: int = 1) -> list[str]:
@@ -84,6 +89,7 @@ class Game(WithSerialization):
     def over(self, shuffle_: bool = False) -> bool:
         self._bet = 0
         self._hand = []
+        self._dealer = []
         if shuffle_ or len(self._cards) < 32:
             self.shuffle()
         return True
