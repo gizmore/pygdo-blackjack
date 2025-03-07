@@ -32,7 +32,7 @@ class site(MethodForm):
         num_won = user.get_setting_value('bj_won')
         won_percent = num_won / num_played * 100 if num_played > 0 else 50
         balance = user.get_setting_value('bj_credits')
-        form.text('info_blackjack',(num_played, num_won, won_percent, balance, game.render_hand(game._hand)))
+        form.text('info_blackjack',(num_played, num_won, won_percent, balance, game.render_hand(game._hand), game.render_hand(game._dealer)))
         form.add_field(GDT_UInt('bet').label('btn_bet').not_null().initial('10'))
         form.actions().add_field(
             GDT_Submit('new_bet').text('btn_bet').calling(self.bet),
