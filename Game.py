@@ -123,12 +123,12 @@ class Game(WithSerialization):
         return max_val
 
     def card_values(self, card: str) -> list[int]:
-        if card[1] in ['10', 'J', 'Q', 'K']:
+        if card[1] in ['J', 'Q', 'K']:
             return [10]
         elif card.endswith('A'):
             return [11, 1]
         else:
-            return [int(card[1])]
+            return [int(card[1:])]
 
     def running(self) -> bool:
         return self.has_bet()
@@ -169,7 +169,7 @@ class Game(WithSerialization):
         rendered = []
         for card in cards:
             if card[0] in ('♦', '♥'):
-                rendered.append(Render.red(card[0], Application.get_mode()) + card[1])
+                rendered.append(Render.red(card[0], Application.get_mode()) + card[1:])
             else:
                 rendered.append(card)
         return ', '.join(rendered) + f" ({self.hand_value(cards)} {t('bj_points')})"
