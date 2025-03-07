@@ -1,6 +1,8 @@
 from random import shuffle
 
+from gdo.base.Application import Application
 from gdo.base.Cache import Cache
+from gdo.base.Render import Render
 from gdo.base.Trans import t
 from gdo.base.Util import Permutations, msg
 from gdo.base.WithSerialization import WithSerialization
@@ -58,7 +60,10 @@ class Game(WithSerialization):
 
     def shuffle(self) -> None:
         msg('msg_bj_shuffle')
-        self._cards = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'] * 8
+        types = ['♦', '♥', '♠', '♣'] * 2
+        self._cards = []
+        for _type in types:
+            self._cards.extend(f"{_type}{val}" for val in ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'])
         shuffle(self._cards)
 
     def has_bet(self) -> bool:
@@ -118,12 +123,12 @@ class Game(WithSerialization):
         return max_val
 
     def card_values(self, card: str) -> list[int]:
-        if card in ['10', 'J', 'Q', 'K']:
+        if card[1] in ['10', 'J', 'Q', 'K']:
             return [10]
-        elif card == 'A':
+        elif card.endswith('A'):
             return [11, 1]
         else:
-            return [int(card)]
+            return [int(card[1])]
 
     def running(self) -> bool:
         return self.has_bet()
@@ -161,7 +166,13 @@ class Game(WithSerialization):
         return t('bj_no_cards')
 
     def render_cards(self, cards: list[str]) -> str:
-        return ', '.join(cards) + f" ({self.hand_value(cards)} {t('bj_points')})"
+        rendered = []
+        for card in cards:
+            if card[0] in ('♦', '♥'):
+                rendered.append(Render.red(card[0], Application.get_mode()) + card[1])
+            else:
+                rendered.append(card)
+        return ', '.join(rendered) + f" ({self.hand_value(cards)} {t('bj_points')})"
 
     def get_bet(self) -> int:
         return self._bet
