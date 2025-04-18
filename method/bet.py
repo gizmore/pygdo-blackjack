@@ -10,8 +10,13 @@ class bet(Method):
 
     _game: Game
 
-    def gdo_trigger(self):
+    @classmethod
+    def gdo_trigger(cls) -> str:
         return 'bj.bet'
+
+    @classmethod
+    def gdo_trig(cls) -> str:
+        return 'bjb'
 
     def gdo_parameters(self):
         return [

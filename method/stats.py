@@ -5,7 +5,8 @@ from gdo.core.GDT_User import GDT_User
 
 class stats(Method):
 
-    def gdo_trigger(self) -> str:
+    @classmethod
+    def gdo_trigger(cls) -> str:
         return 'bj.stats'
 
     def gdo_parameters(self) -> list[GDT]:

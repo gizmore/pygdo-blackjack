@@ -18,7 +18,8 @@ class site(MethodForm):
     Turn blackjack commands into a poorly usable website.
     """
 
-    def gdo_trigger(self) -> str:
+    @classmethod
+    def gdo_trigger(cls) -> str:
         return ''
 
     def gdo_user_type(self) -> str | None:

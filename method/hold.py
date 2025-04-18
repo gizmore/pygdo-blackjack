@@ -7,8 +7,13 @@ class hold(Method):
 
     _game: Game
 
-    def gdo_trigger(self) -> str:
+    @classmethod
+    def gdo_trigger(cls) -> str:
         return "bj.hold"
+
+    @classmethod
+    def gdo_trig(cls) -> str:
+        return 'bjh'
 
     def gdo_execute(self) -> GDT:
         user = self._env_user

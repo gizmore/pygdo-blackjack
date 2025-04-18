@@ -8,8 +8,13 @@ class draw(Method):
 
     _game: Game
 
-    def gdo_trigger(self) -> str:
+    @classmethod
+    def gdo_trigger(cls) -> str:
         return 'bj.draw'
+
+    @classmethod
+    def gdo_trig(cls) -> str:
+        return 'bjd'
 
     def gdo_parameters(self) -> list[GDT]:
         return [

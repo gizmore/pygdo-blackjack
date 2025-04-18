@@ -7,7 +7,8 @@ from gdo.blackjack.Game import Game
 
 class reset(Method):
 
-    def gdo_trigger(self) -> str:
+    @classmethod
+    def gdo_trigger(cls) -> str:
         return 'bj.reset'
 
     @WithRateLimit
