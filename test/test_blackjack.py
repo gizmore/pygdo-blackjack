@@ -6,19 +6,19 @@ from gdo.base.Exceptions import GDOError
 from gdo.base.ModuleLoader import ModuleLoader
 from gdo.base.Util import Random
 from gdo.blackjack.module_blackjack import module_blackjack
-from gdotest.TestUtil import web_plug, reinstall_module, cli_plug, cli_top
+from gdotest.TestUtil import reinstall_module, cli_plug, cli_top, GDOTestCase
 
 
-class BlackJackTest(unittest.TestCase):
+class BlackJackTest(GDOTestCase):
 
     def setUp(self):
+        super().setUp()
         Application.init(os.path.dirname(__file__ + "/../../../../"))
         loader = ModuleLoader.instance()
         loader.load_modules_db(True)
         reinstall_module('blackjack')
         loader.init_modules(True, True)
         loader.init_cli()
-        return self
 
     def test_01_game_reset(self):
         mod = module_blackjack.instance()
