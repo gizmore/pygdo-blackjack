@@ -35,7 +35,7 @@ class site(MethodForm):
         balance = user.get_setting_value('bj_credits')
         form.text('info_blackjack',(num_played, num_won, won_percent, balance, game.render_hand(game._hand), game.render_hand(game._dealer)))
         form.add_field(GDT_UInt('bet').label('btn_bet').not_null().initial('10'))
-        form.actions().add_field(
+        form.actions().add_fields(
             GDT_Submit('new_bet').text('btn_bet').calling(self.bet),
             GDT_Submit('draw').text('btn_draw_card').calling(self.draw),
             GDT_Submit('hold').text('btn_hold_cards').calling(self.hold),
@@ -60,4 +60,4 @@ class site(MethodForm):
         gdt = method.env_copy(self).args_copy(self).execute()
         while asyncio.iscoroutine(gdt):
             gdt = asyncio.run(gdt)
-        return GDT_Bar().vertical().add_field(gdt, self.get_form(True))
+        return GDT_Bar().vertical().add_fields(gdt, self.get_form(True))
