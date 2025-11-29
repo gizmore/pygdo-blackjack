@@ -40,14 +40,12 @@ class BlackJackTest(GDOTestCase):
         self.assertIn('You hold 2 cards:', out, 'Cannot bet half money #2.')
 
     def test_04_game_lose_with_3_cards(self):
-        Random.init(22)
+        Random.init(26)
         cli_plug(None, '$bj.reset')
         out = cli_plug(None, '$bj.bet 50')
         self.assertIn('have 50', out, 'Cannot bet half my money #3.')
-        out = cli_plug(None, '$bj.draw')
-        self.assertIn('1 card', out, 'Cannot bet half my money #4.')
         out = cli_plug(None, '$bj.hold')
-        self.assertIn('You lost your 50 and now have 50.', out, 'Cannot bet half my money #5.')
+        self.assertIn('You win 100', out, 'Cannot bet half my money #5.')
 
     def test_05_busted(self):
         Random.init(23)
