@@ -1,5 +1,6 @@
 import asyncio
 
+from gdo.base.Application import Application
 from gdo.blackjack.Game import Game
 from gdo.blackjack.method.draw import draw
 from gdo.blackjack.method.hold import hold
@@ -43,21 +44,21 @@ class site(MethodForm):
         )
         # super().gdo_create_form(form)
 
-    def bet(self):
-        return self.bj_method(bet)
+    async def bet(self):
+        return await self.bj_method(bet)
 
-    def draw(self):
-        return self.bj_method(draw)
+    async def draw(self):
+        return await self.bj_method(draw)
 
-    def hold(self):
-        return self.bj_method(hold)
+    async def hold(self):
+        return await self.bj_method(hold)
 
-    def reset(self):
-        return self.bj_method(reset)
+    async def reset(self):
+        return await self.bj_method(reset)
 
-    def bj_method(self, method_class):
+    async def bj_method(self, method_class):
         method = method_class()
         gdt = method.env_copy(self).args_copy(self).execute()
         while asyncio.iscoroutine(gdt):
-            gdt = asyncio.run(gdt)
+            gdt = await gdt
         return GDT_Bar().vertical().add_fields(gdt, self.get_form(True))
