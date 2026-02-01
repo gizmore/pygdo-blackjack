@@ -55,5 +55,13 @@ btn_hold_cards = "Hold"
 btn_reset = "Reset"
 
 #########
+# Leave #
+#########
+mt_blackjack_leave = "Leave Table"
+md_blackjack_leave = "Collect your wins for the wechall blackjack challenge."
+err_bj_millionaire = "To leave the table for the challenge you need %d credits. You have only %d so %d are missing."
+msg_bj_millionaire = "You have more than %d and leave the table with your solution: %s"
+
+#########
 # Stats #
 #########
