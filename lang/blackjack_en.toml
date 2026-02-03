@@ -48,11 +48,12 @@ msg_bj_lost_draw = "The dealer draws %s. Draw! You get your %d back and have %d 
 ########
 mt_blackjack_site = "BlackJack"
 md_blackjack_site = "HTTP combined view for playing BlackJack on this PyGDOv8 installation."
-info_blackjack = "You have played %d games and won %d (%.0f%%). Balance: %dc. You hold %s and the dealer holds %s."
+info_blackjack = "You have played %d games and won %d (%.0f%%). Balance: %dc. You hold %s and the dealer holds %s. When you have %d credits you can leave."
 btn_bet = "Bet"
 btn_draw_card = "Draw Card"
 btn_hold_cards = "Hold"
 btn_reset = "Reset"
+btn_leave = "Leave"
 
 #########
 # Leave #

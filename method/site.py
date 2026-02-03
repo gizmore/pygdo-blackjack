@@ -1,9 +1,11 @@
 import asyncio
 
 from gdo.base.Application import Application
+from gdo.base.Util import module_config_value
 from gdo.blackjack.Game import Game
 from gdo.blackjack.method.draw import draw
 from gdo.blackjack.method.hold import hold
+from gdo.blackjack.method.leave import leave
 from gdo.blackjack.method.reset import reset
 from gdo.blackjack.module_blackjack import module_blackjack
 from gdo.blackjack.method.bet import bet
@@ -34,15 +36,16 @@ class site(MethodForm):
         num_won = user.get_setting_value('bj_won')
         won_percent = num_won / num_played * 100 if num_played > 0 else 50
         balance = user.get_setting_value('bj_credits')
-        form.text('info_blackjack',(num_played, num_won, won_percent, balance, game.render_hand(game._hand), game.render_hand(game._dealer)))
+        mill = module_config_value('blackjack', 'bj_millionaire')
+        form.text('info_blackjack',(num_played, num_won, won_percent, balance, game.render_hand(game._hand), game.render_hand(game._dealer), mill))
         form.add_field(GDT_UInt('bet').label('btn_bet').not_null().initial('10'))
         form.actions().add_fields(
             GDT_Submit('new_bet').text('btn_bet').calling(self.bet),
             GDT_Submit('draw').text('btn_draw_card').calling(self.draw),
             GDT_Submit('hold').text('btn_hold_cards').calling(self.hold),
             GDT_Submit('reset').text('btn_reset').calling(self.reset),
+            GDT_Submit('leave').text('btn_leave').calling(self.leave),
         )
-        # super().gdo_create_form(form)
 
     async def bet(self):
         return await self.bj_method(bet)
@@ -55,6 +58,9 @@ class site(MethodForm):
 
     async def reset(self):
         return await self.bj_method(reset)
+
+    async def leave(self):
+        return await self.bj_method(leave)
 
     async def bj_method(self, method_class):
         method = method_class()
