@@ -14,7 +14,7 @@ class leave(Method):
             score_required = module_config_value('blackjack', 'bj_millionaire')
             if score_have < score_required:
                 return self.err('err_bj_millionaire', (score_required, score_have, score_required - score_have))
-            solution = self.get_solution_blackjack(self._env_user.render_name(), Files.get_contents(get_module('blackjack').file_path('password.txt')))
+            solution = self.get_solution_blackjack(self._env_user.render_name(), Files.get_contents(get_module('blackjack').file_path('secret.txt')))
             return self.msg('msg_bj_millionaire', (score_required, solution))
 
         def md5_hex(self, s: str) -> str:

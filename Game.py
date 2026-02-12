@@ -95,7 +95,7 @@ class Game(WithSerialization):
         self._bet = 0
         self._hand = []
         self._dealer = []
-        if shuffle_ or len(self._cards) < 32:
+        if shuffle_ or len(self._cards) < 10:
             self.shuffle()
         return True
 

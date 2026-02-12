@@ -14,13 +14,13 @@ class module_blackjack(GDO_Module):
 
     def gdo_module_config(self) -> list[GDT]:
         return [
-            GDT_Credits('bj_min_bet').initial('10').min(1).max(1000000),
+            GDT_Credits('bj_min_bet').initial('5').min(1).max(1000000),
             GDT_UInt('bj_games').initial('0').writable(False),
             GDT_UInt('bj_games_won').initial('0').writable(False),
             GDT_UInt('bj_games_lost').initial('0').writable(False),
             GDT_Credits('bj_money_won').initial('0').writable(False),
             GDT_Credits('bj_money_lost').initial('0').writable(False),
-            GDT_Credits('bj_millionaire').initial('64000').min(0).max(1_000_000),
+            GDT_Credits('bj_millionaire').initial('1000000').min(0).max(1_000_000_000),
         ]
 
     def cfg_min_bet(self) -> int:
