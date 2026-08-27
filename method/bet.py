@@ -18,6 +18,9 @@ class bet(Method):
     def gdo_trig(cls) -> str:
         return 'bjb'
 
+    def gdo_method_hidden(self) -> bool:
+        return True
+
     def gdo_parameters(self):
         return [
             GDT_Credits('bet').not_null(),

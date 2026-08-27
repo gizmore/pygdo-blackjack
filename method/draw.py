@@ -16,6 +16,9 @@ class draw(Method):
     def gdo_trig(cls) -> str:
         return 'bjd'
 
+    def gdo_method_hidden(self) -> bool:
+        return True
+
     def gdo_parameters(self) -> list[GDT]:
         return [
             GDT_UInt('amt').min(1).max(3).initial('1'),

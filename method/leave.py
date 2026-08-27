@@ -9,6 +9,13 @@ class leave(Method):
         def gdo_trigger(cls) -> str:
             return 'bj.leave'
 
+        @classmethod
+        def gdo_trig(cls) -> str:
+            return 'bjl'
+
+        def gdo_method_hidden(self) -> bool:
+            return True
+
         def gdo_execute(self) -> GDT:
             score_have = self._env_user.get_setting_value('bj_credits')
             score_required = module_config_value('blackjack', 'bj_millionaire')
@@ -24,4 +31,3 @@ class leave(Method):
             pname = playername.lower()
             h = self.md5_hex(dog_password + self.md5_hex(pname) + dog_password)[1:17]
             return f"{pname}!{h}!rich"
-        

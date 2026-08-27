@@ -15,6 +15,9 @@ class hold(Method):
     def gdo_trig(cls) -> str:
         return 'bjh'
 
+    def gdo_method_hidden(self) -> bool:
+        return True
+
     async def gdo_execute(self) -> GDT:
         user = self._env_user
         game = self._game = Game.instance(user)

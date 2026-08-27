@@ -7,6 +7,7 @@ bj_credits = "Credits"
 bj_played = "Blackjack games"
 bj_won = "Blackjack won"
 bj_lost = "Blackjack lost"
+msg_bj_commands = "BlackJack commands: $bj.bet <credits>, $bj.draw [<amount>], $bj.hold, $bj.reset, $bj.leave, $bj.stats [<user>]."
 
 #########
 # Reset #

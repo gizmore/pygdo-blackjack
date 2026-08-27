@@ -6,6 +6,13 @@ from gdo.base.Exceptions import GDOError
 from gdo.base.ModuleLoader import ModuleLoader
 from gdo.base.Util import Random
 from gdo.blackjack.module_blackjack import module_blackjack
+from gdo.blackjack.method.bet import bet
+from gdo.blackjack.method.bj import bj
+from gdo.blackjack.method.draw import draw
+from gdo.blackjack.method.hold import hold
+from gdo.blackjack.method.leave import leave
+from gdo.blackjack.method.reset import reset
+from gdo.blackjack.method.stats import stats
 from gdotest.TestUtil import reinstall_module, cli_plug, cli_top, GDOTestCase
 
 
@@ -26,6 +33,14 @@ class BlackJackTest(GDOTestCase):
         self.assertIn('You have to bet at least', out, 'Blackjack does not capture min bet.')
         out = cli_plug(None, '$bj.reset')
         self.assertIn('Balance: 100.', out, 'Blackjack does not reset.')
+
+    def test_blackjack_command_entrypoint_hides_subcommands(self):
+        self.assertEqual('blackjack', bj.gdo_trigger())
+        self.assertEqual('bj', bj.gdo_trig())
+        self.assertEqual('bjd', draw.gdo_trig())
+        self.assertEqual('bjh', hold.gdo_trig())
+        self.assertTrue(all(command().gdo_method_hidden()
+                            for command in (bet, draw, hold, leave, reset, stats)))
 
     def test_02_game_min_bet(self):
         out = cli_plug(None, '$bj.bet 5')

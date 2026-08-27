@@ -9,6 +9,13 @@ class stats(Method):
     def gdo_trigger(cls) -> str:
         return 'bj.stats'
 
+    @classmethod
+    def gdo_trig(cls) -> str:
+        return 'bjs'
+
+    def gdo_method_hidden(self) -> bool:
+        return True
+
     def gdo_parameters(self) -> list[GDT]:
         return [
             GDT_User('user'),
@@ -26,5 +33,3 @@ class stats(Method):
 
     def show_user_stats(self, user) -> GDT:
         pass
-
-        

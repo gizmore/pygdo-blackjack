@@ -11,6 +11,13 @@ class reset(Method):
     def gdo_trigger(cls) -> str:
         return 'bj.reset'
 
+    @classmethod
+    def gdo_trig(cls) -> str:
+        return 'bjr'
+
+    def gdo_method_hidden(self) -> bool:
+        return True
+
     @WithRateLimit
     def gdo_execute(self) -> GDT:
         user = self._env_user
