@@ -4,6 +4,9 @@ bj_hand = '%s cards: %s'
 bj_no_cards = 'no cards.'
 bj_points = 'points'
 bj_credits = "Credits"
+bj_played = "Blackjack games"
+bj_won = "Blackjack won"
+bj_lost = "Blackjack lost"
 
 #########
 # Reset #
