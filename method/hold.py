@@ -15,7 +15,7 @@ class hold(Method):
     def gdo_trig(cls) -> str:
         return 'bjh'
 
-    def gdo_execute(self) -> GDT:
+    async def gdo_execute(self) -> GDT:
         user = self._env_user
         game = self._game = Game.instance(user)
 
@@ -28,14 +28,14 @@ class hold(Method):
             cards.append(game.draw_card())
 
         if game.hand_value(cards) > 21:
-            win = game.won(False)
+            win = await game.won(False)
             return self.msg('msg_bj_won', (game.render_cards(cards), win, game.get_credits()))
 
         if game.hand_value(cards) == min_:
-            bet = game.on_draw()
+            bet = await game.on_draw()
             return self.err('msg_bj_lost_draw', (game.render_cards(cards), bet, game.get_credits()))
 
-        loss = game.lost()
+        loss = await game.lost()
         return self.err('msg_bj_lost', (game.render_cards(cards), loss, game.get_credits()))
 
     def gdo_after_execute(self):

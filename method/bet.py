@@ -23,7 +23,7 @@ class bet(Method):
             GDT_Credits('bet').not_null(),
         ]
 
-    def gdo_execute(self) -> GDT:
+    async def gdo_execute(self) -> GDT:
         user = self._env_user
         mod = module_blackjack.instance()
         amt = self.param_value('bet')
@@ -37,10 +37,10 @@ class bet(Method):
         if has < amt:
             return self.err('err_bj_credits', (has,))
 
-        cards = game.bet(amt)
+        cards = await game.bet(amt)
 
         if game.has_blackjack():
-            win = game.won(True)
+            win = await game.won(True)
             return self.msg('msg_bj_started_bj', (amt, game.render_cards(cards), win, game.get_credits()))
 
         self.msg('msg_bj_started', (amt, game.get_credits(), game.render_hand(cards), game.render_cards(game._dealer)))

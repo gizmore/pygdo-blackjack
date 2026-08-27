@@ -69,9 +69,9 @@ class Game(WithSerialization):
     def has_bet(self) -> bool:
         return self._bet > 0
 
-    def bet(self, bet: int):
+    async def bet(self, bet: int):
         m = module_blackjack.instance()
-        m.bet(self._user, bet)
+        await m.bet(self._user, bet)
         self._bet = bet
         self._dealer.append(self.draw_card())
         return self.draw(2)
@@ -139,23 +139,23 @@ class Game(WithSerialization):
     def get_credits(self) -> int:
         return module_blackjack.instance().get_credits(self._user)
 
-    def lost(self) -> int:
+    async def lost(self) -> int:
         m = module_blackjack.instance()
-        m.save_game(self._user, -self._bet, False)
+        await m.save_game(self._user, -self._bet, False)
         loss = self._bet
         self.over()
         return loss
 
-    def won(self, bj: bool) -> int:
+    async def won(self, bj: bool) -> int:
         m = module_blackjack.instance()
         win = self._bet * (4 if bj else 2)
-        m.save_game(self._user, win, bj)
+        await m.save_game(self._user, win, bj)
         self.over()
         return win
 
-    def on_draw(self):
+    async def on_draw(self):
         m = module_blackjack.instance()
-        m.save_game(self._user, self._bet, False)
+        await m.save_game(self._user, self._bet, False)
         bet = self._bet
         self.over()
         return bet

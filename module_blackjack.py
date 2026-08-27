@@ -53,21 +53,21 @@ class module_blackjack(GDO_Module):
     ########
     # Game #
     ########
-    def bet(self, user: GDO_User, bet: int):
+    async def bet(self, user: GDO_User, bet: int):
         user.increase_setting('bj_credits', -bet)
-        self.increase_config_val('bj_money_won', bet)
+        await self.increase_config_val('bj_money_won', bet)
 
-    def save_game(self, user: GDO_User, amt: int, bj: bool):
-        self.increase_config_val('bj_games', 1)
+    async def save_game(self, user: GDO_User, amt: int, bj: bool):
+        await self.increase_config_val('bj_games', 1)
         if amt > 0:
             user.increase_setting('bj_credits', amt)
         user.increase_setting('bj_played', 1)
-        self.increase_config_val('bj_games', 1)
+        await self.increase_config_val('bj_games', 1)
         if amt > 0:
-            self.increase_config_val('bj_games_lost', 1)
-            self.increase_config_val('bj_money_lost', amt)
+            await self.increase_config_val('bj_games_lost', 1)
+            await self.increase_config_val('bj_money_lost', amt)
             user.increase_setting('bj_won', 1)
         else:
-            self.increase_config_val('bj_games_won', 1)
-            self.increase_config_val('bj_money_won', -amt)
+            await self.increase_config_val('bj_games_won', 1)
+            await self.increase_config_val('bj_money_won', -amt)
             user.increase_setting('bj_lost', 1)
