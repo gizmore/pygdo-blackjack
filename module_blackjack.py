@@ -30,7 +30,7 @@ class module_blackjack(GDO_Module):
         return self.get_config_value('bj_millionaire')
 
     def gdo_init_sidebar(self, page):
-        page._left_bar.add_field(GDT_Link().href(self.href('site')).text('module_blackjack'))
+        page._left_bar.add_field(GDT_Link().href(self.href('site')).text('module_blackjack').icon('card'))
 
     ###############
     # User Config #
