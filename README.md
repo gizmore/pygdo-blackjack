@@ -1,6 +1,9 @@
 # pygdo-blackjack
 A blackjack chat-game for [pygdo](https://github.com/gizmore/pygdo).
 
+Game money uses `bj_credits` (initial balance: 100), independently of
+`payment_credits`, with its own `GDT_BlackjackCredits` type and money icon.
+
 I forgot to use sessions to save game states,
 but this is actually only needed in `bin/pygdo/` when not using repl,
 or http services that don't re-use threads (apache wsgi works fine)
