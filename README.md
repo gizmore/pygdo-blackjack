@@ -25,6 +25,7 @@ system. (**forbidden** ;)), then:
 - [bj.bet](./method/bet.py) amt - Bet an amount of your credits.
 - [bj.draw](./method/draw.py) {ncards} - Draw card(s).
 - [bj.hold](./method/hold.py)  - Let the dealer play.
+- [bj.leave](./method/leave.py) - With at least one million credits, receive a signed challenge token. Channel replies are sent privately.
 - [bj.reset](./method/reset.py) - Reset credits.
 - [bj.stats](./method/reset.py) {player} - Print bank or player stats.
 
@@ -32,6 +33,14 @@ system. (**forbidden** ;)), then:
 ### HTTP Methods:
 
 Currently hooks into the left sidebar.
+
+`bj.leave` requires a private file containing a 64-character lowercase
+hexadecimal secret. By default it is `.config/pygdo/secret_bj_token` in the
+PyGDO installation owner's home; `PYGDO_BJ_SECRET_PATH` overrides the path.
+Keep it outside all web document roots. The Blackjack challenge verifier must
+receive the same secret through a secure channel. Do
+not publish the token: it is redeemable by its holder. The legacy secret file
+is not used for these new tokens.
 
 Methods:
 

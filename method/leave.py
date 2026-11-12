@@ -1,7 +1,7 @@
 from gdo.base.GDT import GDT
 from gdo.base.Method import Method
-from gdo.base.Util import module_config_value, Files, get_module
-import hashlib
+from gdo.base.Util import module_config_value
+from gdo.core.ChallengeToken import bj_secret_path, issue, read_secret
 
 class leave(Method):
 
@@ -18,16 +18,17 @@ class leave(Method):
 
         def gdo_execute(self) -> GDT:
             score_have = self._env_user.get_setting_value('bj_credits')
-            score_required = module_config_value('blackjack', 'bj_millionaire')
+            score_required = max(1_000_000, module_config_value('blackjack', 'bj_millionaire'))
             if score_have < score_required:
                 return self.err('err_bj_millionaire', (score_required, score_have, score_required - score_have))
-            solution = self.get_solution_blackjack(self._env_user.render_name(), Files.get_contents(get_module('blackjack').file_path('secret.txt')))
+            try:
+                secret = read_secret(bj_secret_path())
+                solution = issue(secret, 'bj1', self._env_user.get_name())
+            except (OSError, ValueError):
+                return self.err('err_bj_token_unavailable')
+            if self._env_channel is not None and not self._env_http:
+                message = getattr(self, '_message', None)
+                if message is None:
+                    return self.err('err_bj_token_private')
+                message.reply_privately()
             return self.msg('msg_bj_millionaire', (score_required, solution))
-
-        def md5_hex(self, s: str) -> str:
-            return hashlib.md5(s.encode("utf-8")).hexdigest()
-
-        def get_solution_blackjack(self, playername: str, dog_password: str) -> str:
-            pname = playername.lower()
-            h = self.md5_hex(dog_password + self.md5_hex(pname) + dog_password)[1:17]
-            return f"{pname}!{h}!rich"
