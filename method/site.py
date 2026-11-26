@@ -67,4 +67,5 @@ class site(MethodForm):
         gdt = method.env_copy(self).args_copy(self).execute()
         while asyncio.iscoroutine(gdt):
             gdt = await gdt
-        return GDT_Bar().vertical().add_fields(gdt, self.get_form(True))
+        del self._form
+        return GDT_Bar().vertical().add_fields(gdt, self.get_form())
