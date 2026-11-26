@@ -1,13 +1,11 @@
 import asyncio
 
-from gdo.base.Application import Application
 from gdo.base.Util import module_config_value
 from gdo.blackjack.Game import Game
 from gdo.blackjack.method.draw import draw
 from gdo.blackjack.method.hold import hold
 from gdo.blackjack.method.leave import leave
 from gdo.blackjack.method.reset import reset
-from gdo.blackjack.module_blackjack import module_blackjack
 from gdo.blackjack.method.bet import bet
 from gdo.core.GDT_UInt import GDT_UInt
 from gdo.form.GDT_Form import GDT_Form
