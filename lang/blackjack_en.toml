@@ -7,7 +7,10 @@ bj_credits = "Blackjack credits"
 bj_played = "Blackjack games"
 bj_won = "Blackjack won"
 bj_lost = "Blackjack lost"
-msg_bj_commands = "BlackJack commands: $bj.bet <credits>, $bj.draw [<amount>], $bj.hold, $bj.reset, $bj.leave, $bj.stats [<user>]."
+msg_bj_commands = "BlackJack commands: $bj.bet <credits>, $bj.draw [<amount>], $bj.hold, $bj.table, $bj.reset, $bj.leave, $bj.stats [<user>]."
+mt_blackjack_table = "BlackJack table"
+md_blackjack_table = "Show your current cards and the dealer's cards."
+msg_bj_table = "You hold %s; the dealer holds %s."
 
 #########
 # Reset #

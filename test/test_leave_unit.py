@@ -17,10 +17,8 @@ class LeaveTest(unittest.TestCase):
 
     def test_millionaire_gets_signed_token(self):
         self.method._env_user.get_setting_value.return_value = 1_000_000
-        module = MagicMock()
-        module.file_path.return_value = '/unused'
         with patch('gdo.blackjack.method.leave.module_config_value', return_value=1_000_000), \
-             patch('gdo.blackjack.method.leave.module_blackjack.instance', return_value=module), \
+             patch('gdo.blackjack.method.leave.bj_secret_path', return_value='/unused'), \
              patch('gdo.blackjack.method.leave.read_secret', return_value=b'k' * 32):
             key, (_, token) = self.method.gdo_execute()
         self.assertEqual('msg_bj_millionaire', key)
@@ -36,7 +34,7 @@ class LeaveTest(unittest.TestCase):
     def test_missing_token_secret_fails_closed(self):
         self.method._env_user.get_setting_value.return_value = 1_000_000
         with patch('gdo.blackjack.method.leave.module_config_value', return_value=1_000_000), \
-             patch('gdo.blackjack.method.leave.module_blackjack.instance', return_value=MagicMock()), \
+             patch('gdo.blackjack.method.leave.bj_secret_path', return_value='/unused'), \
              patch('gdo.blackjack.method.leave.read_secret', side_effect=FileNotFoundError):
             self.assertEqual('err_bj_token_unavailable', self.method.gdo_execute())
 
@@ -46,7 +44,7 @@ class LeaveTest(unittest.TestCase):
         self.method._env_http = False
         self.method._message = MagicMock()
         with patch('gdo.blackjack.method.leave.module_config_value', return_value=1_000_000), \
-             patch('gdo.blackjack.method.leave.module_blackjack.instance', return_value=MagicMock()), \
+             patch('gdo.blackjack.method.leave.bj_secret_path', return_value='/unused'), \
              patch('gdo.blackjack.method.leave.read_secret', return_value=b'k' * 32):
             self.method.gdo_execute()
         self.method._message.reply_privately.assert_called_once_with()
